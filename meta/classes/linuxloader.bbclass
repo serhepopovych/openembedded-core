@@ -11,6 +11,8 @@ def get_musl_loader(d):
         dynamic_loader = "${base_libdir}/ld-musl-powerpc${@['', '-sf'][d.getVar('TARGET_FPU') == 'soft']}.so.1"
     elif targetarch == "powerpc64":
         dynamic_loader = "${base_libdir}/ld-musl-powerpc64.so.1"
+    elif targetarch == "powerpc64le":
+        dynamic_loader = "${base_libdir}/ld-musl-powerpc64le.so.1"
     elif targetarch == "x86_64":
         dynamic_loader = "${base_libdir}/ld-musl-x86_64.so.1"
     elif re.search("i.86", targetarch):
