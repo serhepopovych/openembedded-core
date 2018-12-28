@@ -66,9 +66,9 @@ SRC_URI_MUSL = "file://0001-Use-getenv-when-secure-versions-are-not-available.pa
                file://0022-Use-if-instead-of-ifdef-for-ENABLE_GSHADOW.patch \
                "
 
-# Workaround undefined reference to `__stack_chk_fail_local' on qemux86 and qemuppc for musl
-SRC_URI_append_libc-musl_qemux86 = " file://0001-Remove-fstack-protector-flags-to-workaround-musl-bui.patch"
-SRC_URI_append_libc-musl_qemuppc = " file://0001-Remove-fstack-protector-flags-to-workaround-musl-bui.patch"
+# Workaround undefined reference to `__stack_chk_fail_local' on x86 and powerpc for musl
+SRC_URI_append_libc-musl_x86 = " file://0001-Remove-fstack-protector-flags-to-workaround-musl-bui.patch"
+SRC_URI_append_libc-musl_powerpc = " file://0001-Remove-fstack-protector-flags-to-workaround-musl-bui.patch"
 
 PAM_PLUGINS = " \
     pam-plugin-unix \
