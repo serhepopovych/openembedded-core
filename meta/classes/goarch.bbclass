@@ -23,6 +23,7 @@ GO_DYNLINK_aarch64 = "1"
 GO_DYNLINK_x86 = "1"
 GO_DYNLINK_x86-64 = "1"
 GO_DYNLINK_powerpc64 = "1"
+GO_DYNLINK_powerpc64le = "1"
 GO_DYNLINK_class-native = ""
 GO_DYNLINK_class-nativesdk = ""
 
@@ -32,6 +33,7 @@ COMPATIBLE_HOST_linux-gnux32 = "null"
 COMPATIBLE_HOST_linux-muslx32 = "null"
 COMPATIBLE_HOST_powerpc = "null"
 COMPATIBLE_HOST_powerpc64 = "null"
+COMPATIBLE_HOST_powerpc64le = "null"
 COMPATIBLE_HOST_mipsarchn32 = "null"
 
 ARM_INSTRUCTION_SET_armv4 = "arm"
@@ -60,10 +62,10 @@ def go_map_arch(a, d):
         return 'mips'
     elif a == 'mipsel':
         return 'mipsle'
+    elif re.match('p(pc|owerpc)(64le)', a):
+        return 'ppc64le'
     elif re.match('p(pc|owerpc)(64)', a):
         return 'ppc64'
-    elif re.match('p(pc|owerpc)(64el)', a):
-        return 'ppc64le'
     else:
         raise bb.parse.SkipRecipe("Unsupported CPU architecture: %s" % a)
 
