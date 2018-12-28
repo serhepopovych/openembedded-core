@@ -19,7 +19,8 @@ libc_baselibs_append_aarch64 = " /lib/ld-linux-aarch64*.so.1"
 INSANE_SKIP_${PN}_append_aarch64 = " libdir"
 
 FILES_${PN} = "${libc_baselibs} ${libexecdir}/* ${base_sbindir}/ldconfig ${sysconfdir}/ld.so.conf"
-FILES_ldd = "${bindir}/ldd"
+RRECOMMENDS_${PN} = "ldd"
+FILES_ldd = "${bindir}/ldd${@['.${PN}', ''][not d.getVar('MLPREFIX')]}"
 FILES_libsegfault = "${base_libdir}/libSegFault*"
 FILES_libcidn = "${base_libdir}/libcidn-*.so ${base_libdir}/libcidn.so.*"
 FILES_libmemusage = "${base_libdir}/libmemusage.so"
@@ -90,6 +91,10 @@ do_install_append () {
 
 	if echo ${PN}|grep -q "glibc-initial"; then
 		return
+	fi
+
+	if [ -n "${MLPREFIX}" ]; then
+		mv "${D}${bindir}/ldd" "${D}${bindir}/ldd.${PN}"
 	fi
 
 	install -d ${D}${sysconfdir}/init.d
