@@ -41,6 +41,10 @@ TERMBITS_SHIFTS_powerpc = "sc_cv_sys_crdly_shift=12 \
 TERMBITS_SHIFTS_powerpc64 = "sc_cv_sys_crdly_shift=12 \
                              sc_cv_sys_tabdly_shift=10 \
                              sc_cv_sys_csize_shift=8"
+TERMBITS_SHIFTS_powerpc64le = "sc_cv_sys_crdly_shift=12 \
+                               sc_cv_sys_tabdly_shift=10 \
+                               sc_cv_sys_csize_shift=8"
+
 
 PACKAGECONFIG_class-target ??= "tcp-wrappers"
 PACKAGECONFIG ??= ""
