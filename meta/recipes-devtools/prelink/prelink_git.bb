@@ -111,6 +111,9 @@ python do_linkerpaths () {
         elif arch == "powerpc64":
             replace_lines("${S}/src/arch-ppc64.c", "/lib64/ld64.so.1", "/" + tune_baselib + "/ld64.so.1", d)
             bits = 64
+        elif arch == "powerpc64le":
+            replace_lines("${S}/src/arch-ppc64.c", "/lib64/ld64.so.2", "/" + tune_baselib + "/ld64.so.2", d)
+            bits = 64
         elif arch == "x86_64":
             if abi == "x32":
                 replace_lines("${S}/src/arch-x86_64.c", "/libx32/ld-linux-x32.so.2", "/" + tune_baselib + "/ld-linux-x32.so.2", d)
