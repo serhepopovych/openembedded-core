@@ -30,6 +30,7 @@ CFLAGS_append_toolchain-clang = " -Wno-error=address-of-packed-member"
 # to u64 == long in userspace. Define __SANE_USERSPACE_TYPES__ to get
 # int-ll64.h included
 CFLAGS_append_powerpc64 = ' -D__SANE_USERSPACE_TYPES__'
+CFLAGS_append_powerpc64le = ' -D__SANE_USERSPACE_TYPES__'
 CFLAGS_append_mipsarchn64 = ' -D__SANE_USERSPACE_TYPES__'
 CFLAGS_append_mipsarchn32 = ' -D__SANE_USERSPACE_TYPES__'
 

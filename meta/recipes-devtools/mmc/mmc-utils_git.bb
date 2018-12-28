@@ -15,7 +15,12 @@ UPSTREAM_CHECK_COMMITS = "1"
 
 S = "${WORKDIR}/git"
 
+# PPC64 and MIPS64 uses long long for u64 in the kernel, but powerpc's asm/types.h
+# prevents 64-bit userland from seeing this definition, instead defaulting
+# to u64 == long in userspace. Define __SANE_USERSPACE_TYPES__ to get
+# int-ll64.h included
 CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
+CFLAGS_append_powerpc64le = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS_append_mipsarchn32 = " -D__SANE_USERSPACE_TYPES__"
 

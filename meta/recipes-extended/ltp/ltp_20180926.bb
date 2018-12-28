@@ -25,8 +25,14 @@ EXTRA_OEMAKE_append_libc-musl = " LIBC=musl "
 # earlier in CFLAGS, etc.
 CFLAGS_append_x86-64 = " -fomit-frame-pointer"
 
+# PPC64 and MIPS64 uses long long for u64 in the kernel, but powerpc's asm/types.h
+# prevents 64-bit userland from seeing this definition, instead defaulting
+# to u64 == long in userspace. Define __SANE_USERSPACE_TYPES__ to get
+# int-ll64.h included
 CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
+CFLAGS_append_powerpc64le = " -D__SANE_USERSPACE_TYPES__"
 CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
+
 SRCREV = "f424769b1ad9fca477118763f88a6cec98ea2c0a"
 
 SRC_URI = "git://github.com/linux-test-project/ltp.git \
