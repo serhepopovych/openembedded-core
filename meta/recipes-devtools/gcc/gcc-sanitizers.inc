@@ -64,6 +64,7 @@ RRECOMMENDS_${PN} += "libasan libubsan"
 RRECOMMENDS_${PN}_append_x86 = " liblsan"
 RRECOMMENDS_${PN}_append_x86-64 = " liblsan libtsan"
 RRECOMMENDS_${PN}_append_powerpc64 = " liblsan libtsan"
+RRECOMMENDS_${PN}_append_powerpc64le = " liblsan libtsan"
 RRECOMMENDS_${PN}_append_aarch64 = " liblsan libtsan"
 
 do_package_write_ipk[depends] += "virtual/${MLPREFIX}${TARGET_PREFIX}compilerlibs:do_packagedata"
