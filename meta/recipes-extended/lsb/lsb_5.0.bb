@@ -76,6 +76,10 @@ do_install() {
 		touch ${D}${sysconfdir}/lsb-release.d/graphics-${PV}-noarch
 		touch ${D}${sysconfdir}/lsb-release.d/graphics-${PV}-ppc64
 		touch ${D}${sysconfdir}/lsb-release.d/desktop-${PV}-ppc64
+	elif [ "${TARGET_ARCH}" = "powerpc64le" ]; then
+		touch ${D}${sysconfdir}/lsb-release.d/graphics-${PV}-noarch
+		touch ${D}${sysconfdir}/lsb-release.d/graphics-${PV}-ppc64le
+		touch ${D}${sysconfdir}/lsb-release.d/desktop-${PV}-ppc64le
 	fi
 }
 
