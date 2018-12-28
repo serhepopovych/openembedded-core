@@ -5,7 +5,9 @@ require conf/machine/include/powerpc/arch-powerpc.inc
 TUNEVALID[m64] = "Power ELF64 standard ABI"
 TUNECONFLICTS[m64] = "m32 nf"
 TUNE_CCARGS .= "${@bb.utils.contains('TUNE_FEATURES', 'm64', ' -m64', '', d)}"
-TUNE_ARCH .= "${@bb.utils.contains('TUNE_FEATURES', [ 'm64' ], 'powerpc64', '', d)}"
+
+PPCARCHSFX_ENDIAN = "${@bb.utils.contains('TUNE_FEATURES', 'bigendian', '', 'le', d)}"
+TUNE_ARCH .= "${@bb.utils.contains('TUNE_FEATURES', 'm64', "powerpc64${PPCARCHSFX_ENDIAN}", '', d)}"
 
 # musl only supports elfv2 ABI for ppc64
 TUNE_CCARGS .= "${@['', ' -mabi=elfv2']['libc-musl' in d.getVar('OVERRIDES').split(':')]}"
@@ -13,8 +15,13 @@ TUNE_CCARGS .= "${@['', ' -mabi=elfv2']['libc-musl' in d.getVar('OVERRIDES').spl
 # user mode qemu doesn't support ppc64
 MACHINE_FEATURES_BACKFILL_CONSIDERED_append = " ${@bb.utils.contains('TUNE_FEATURES', 'm64', 'qemu-usermode', '', d)}"
 
-AVAILTUNES += "powerpc64"
+AVAILTUNES += "powerpc64 powerpc64le"
 TUNE_FEATURES_tune-powerpc64 = "m64 bigendian fpu-hard"
 BASE_LIB_tune-powerpc64 = "lib64"
 TUNE_PKGARCH_tune-powerpc64 = "powerpc64"
 PACKAGE_EXTRA_ARCHS_tune-powerpc64 = "powerpc64"
+
+TUNE_FEATURES_tune-powerpc64le = "m64 fpu-hard"
+BASE_LIB_tune-powerpc64le = "lib64"
+TUNE_PKGARCH_tune-powerpc64le = "powerpc64le"
+PACKAGE_EXTRA_ARCHS_tune-powerpc64le = "powerpc64le"
