@@ -60,6 +60,8 @@ OECMAKE_TARGET_INSTALL ?= "install"
 def map_target_arch_to_uname_arch(target_arch):
     if target_arch == "powerpc":
         return "ppc"
+    if target_arch == "powerpc64le":
+        return "ppc64le"
     if target_arch == "powerpc64":
         return "ppc64"
     return target_arch
