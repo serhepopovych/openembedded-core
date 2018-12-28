@@ -6,7 +6,8 @@
 
 valid_archs = "alpha cris ia64 \
                i386 x86 \
-               m68knommu m68k ppc powerpc powerpc64 ppc64  \
+               m68knommu m68k \
+               ppc ppc64 ppc64le powerpc powerpc64 powerpc64le  \
                sparc sparc64 \
                arm aarch64 \
                m32r mips \
@@ -31,7 +32,7 @@ def map_kernel_arch(a, d):
     elif re.match('mips(isa|)(32|64|)(r6|)(el|)$', a):      return 'mips'
     elif re.match('mcf', a):                    return 'm68k'
     elif re.match('riscv(32|64|)(eb|)$', a):    return 'riscv'
-    elif re.match('p(pc|owerpc)(|64)', a):      return 'powerpc'
+    elif re.match('p(pc|owerpc)(|64(|le))', a): return 'powerpc'
     elif re.match('sh(3|4)$', a):               return 'sh'
     elif re.match('bfin', a):                   return 'blackfin'
     elif re.match('microblazee[bl]', a):        return 'microblaze'
@@ -46,7 +47,7 @@ export ARCH = "${@map_kernel_arch(d.getVar('TARGET_ARCH'), d)}"
 def map_uboot_arch(a, d):
     import re
 
-    if   re.match('p(pc|owerpc)(|64)', a): return 'ppc'
+    if   re.match('p(pc|owerpc)(|64(|le))', a): return 'ppc'
     elif re.match('i.86$', a): return 'x86'
     return a
 
