@@ -54,6 +54,10 @@ CONFIGFILESURI_powerpc64 = " \
     file://config.h \
     file://_numpyconfig.h \
 "
+CONFIGFILESURI_powerpc64le = " \
+    file://config.h \
+    file://_numpyconfig.h \
+"
 CONFIGFILESURI_mipsarchn64eb = " \
     file://config.h \
     file://_numpyconfig.h \
