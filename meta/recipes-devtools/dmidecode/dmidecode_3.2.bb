@@ -7,7 +7,7 @@ SRC_URI = "${SAVANNAH_NONGNU_MIRROR}/dmidecode/${BP}.tar.xz \
            file://0001-Committing-changes-from-do_unpack_extra.patch \
            "
 
-COMPATIBLE_HOST = "(i.86|x86_64|aarch64|arm|powerpc|powerpc64).*-linux"
+COMPATIBLE_HOST = "(i.86|x86_64|aarch64|arm|powerpc|powerpc64(|le)).*-linux"
 
 EXTRA_OEMAKE = "-e MAKEFLAGS="
 

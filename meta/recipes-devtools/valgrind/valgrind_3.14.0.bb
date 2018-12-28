@@ -43,7 +43,7 @@ SRC_URI[md5sum] = "74175426afa280184b62591b58c671b3"
 SRC_URI[sha256sum] = "037c11bfefd477cc6e9ebe8f193bb237fe397f7ce791b4a4ce3fa1c6a520baa5"
 UPSTREAM_CHECK_REGEX = "valgrind-(?P<pver>\d+(\.\d+)+)\.tar"
 
-COMPATIBLE_HOST = '(i.86|x86_64|arm|aarch64|mips|powerpc|powerpc64).*-linux'
+COMPATIBLE_HOST = '(i.86|x86_64|arm|aarch64|mips|powerpc|powerpc64(|le)).*-linux'
 
 # valgrind supports armv7 and above
 COMPATIBLE_HOST_armv4 = 'null'
