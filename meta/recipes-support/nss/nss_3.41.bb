@@ -90,6 +90,8 @@ do_compile() {
         OS_TEST=ppc
     elif [ "${TARGET_ARCH}" = "powerpc64" ]; then
         OS_TEST=ppc64
+    elif [ "${TARGET_ARCH}" = "powerpc64le" ]; then
+        OS_TEST=ppc64le
     elif [ "${TARGET_ARCH}" = "mips" -o "${TARGET_ARCH}" = "mipsel" -o "${TARGET_ARCH}" = "mips64" -o "${TARGET_ARCH}" = "mips64el" ]; then
         OS_TEST=mips
     elif [ "${TARGET_ARCH}" = "aarch64_be" ]; then
@@ -147,6 +149,8 @@ do_install() {
         OS_TEST=ppc
     elif [ "${TARGET_ARCH}" = "powerpc64" ]; then
         OS_TEST=ppc64
+    elif [ "${TARGET_ARCH}" = "powerpc64le" ]; then
+        OS_TEST=ppc64le
     elif [ "${TARGET_ARCH}" = "mips" -o "${TARGET_ARCH}" = "mipsel" -o "${TARGET_ARCH}" = "mips64" -o "${TARGET_ARCH}" = "mips64el" ]; then
         OS_TEST=mips
     elif [ "${TARGET_ARCH}" = "aarch64_be" ]; then
