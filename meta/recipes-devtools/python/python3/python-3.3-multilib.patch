@@ -313,7 +313,7 @@ Index: Python-3.5.4/configure.ac
 +esac
 +
 +case $ARCH:$python_cv_cc_64bit_output in
-+ppc64:yes | powerpc64:yes | s390x:yes | sparc64:yes | x86_64:yes)
++ppc64:yes | powerpc64:yes | powerpc64le:yes | s390x:yes | sparc64:yes | x86_64:yes)
 +  LIB="lib64"
 +  ;;
 +*:*)
