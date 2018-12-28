@@ -72,6 +72,7 @@ EXTRA_OECMAKE_append_x86-x32 = " -DUSE_GSTREAMER_GL=OFF "
 # Javascript JIT is not supported on powerpc
 EXTRA_OECMAKE_append_powerpc = " -DENABLE_JIT=OFF "
 EXTRA_OECMAKE_append_powerpc64 = " -DENABLE_JIT=OFF "
+EXTRA_OECMAKE_append_powerpc64le = " -DENABLE_JIT=OFF "
 
 # ARM JIT code does not build on ARMv4/5/6 anymore
 EXTRA_OECMAKE_append_armv5 = " -DENABLE_JIT=OFF "
