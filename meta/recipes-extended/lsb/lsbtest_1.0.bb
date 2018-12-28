@@ -37,11 +37,17 @@ do_install() {
 	# in the package_list when MLIB=lib64 is being used.
 	# Otherwise, by default, the ppc32 LSB packages
 	# will be downloaded by LSB_Test.sh
-	if [ "${TARGET_ARCH}" = "powerpc64" ];then
-		if [ "${PN}" != "${BPN}" ];then
-			sed -i -e 's/lsbarch/ppc64/g' -e 's/targetarch/ppc64/g' ${D}/opt/lsb-test/packages_list
-			sed -i -e 's/targetarch/PPC64/g' ${D}/opt/lsb-test/session
-		fi
+	case "${TARGET_ARCH}" in
+		powerpc64)   ppc='ppc64';   PPC='PPC64'   ;;
+		powerpc64le) ppc='ppc64le'; PPC='PPC64LE' ;;
+		*)           ppc='';        PPC=''        ;;
+	esac
+	if [ -n "${ppc}" -a "${PN}" != "${BPN}" ];then
+		sed -e "s/lsbarch/${ppc}/g" \
+		    -e "s/targetarch/${ppc}/g" \
+		    -i "${D}/opt/lsb-test/packages_list"
+		sed -e "s/targetarch/${PPC}/g" \
+		    -i "${D}/opt/lsb-test/session"
 	fi
 }
 
