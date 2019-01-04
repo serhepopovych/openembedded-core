@@ -20,26 +20,31 @@ EXTRA_OECONF_class-native = "--enable-targets=all \
                              --enable-install-libbfd \
                              --disable-werror"
 
+do_configure_append_class-native () {
+	for l in zlib intl bfd libiberty opcodes; do
+		oe_runmake configure-${l}
+	done
+}
+
+do_compile_class-native () {
+	for l in zlib intl bfd libiberty opcodes; do
+		cd "${l}"
+		autotools_do_compile
+		cd - >/dev/null
+	done
+}
+
 do_install_class-native () {
-	autotools_do_install
+	for l in bfd libiberty opcodes; do
+		cd "${l}"
+		autotools_do_install
+		cd - >/dev/null
+	done
 
 	# Install the libiberty header
 	install -d ${D}${includedir}
 	install -m 644 ${S}/include/ansidecl.h ${D}${includedir}
 	install -m 644 ${S}/include/libiberty.h ${D}${includedir}
-
-	# We only want libiberty, libbfd and libopcodes
-	rm -rf ${D}${bindir}
-	rm -rf ${D}${prefix}/${TARGET_SYS}
-	rm -rf ${D}${prefix}/lib/ldscripts
-	rm -rf ${D}${prefix}/share/info
-	rm -rf ${D}${prefix}/share/locale
-	rm -rf ${D}${prefix}/share/man
-	rmdir ${D}${prefix}/share || :
-	rmdir ${D}/${libdir}/gcc-lib || :
-	rmdir ${D}/${libdir}64/gcc-lib || :
-	rmdir ${D}/${libdir} || :
-	rmdir ${D}/${libdir}64 || :
 }
 
 # Split out libbfd-*.so so including perf doesn't include extra stuff
